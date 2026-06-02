@@ -1,11 +1,13 @@
 const dns = require('dns');
 const express = require('express');
 const mongoose = require('mongoose');
+const productRoutes = require('./routes/productRoutes');
 require('dotenv').config();
 
 const app = express();
 
 app.use(express.json());
+app.use('/api/products', productRoutes);
 
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 

@@ -15,11 +15,6 @@ const productSchema = new mongoose.Schema(
             min: [0, 'El precio no puede ser negativo']
         },
 
-        categoria: {
-            type: String,
-            required: [true, 'La categoría es obligatoria'],
-            enum: ['cafe', 'vino', 'cuchara']
-        },
 
         cantidad: {
             type: Number,
