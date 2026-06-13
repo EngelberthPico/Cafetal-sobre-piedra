@@ -33,7 +33,7 @@ const obtenerPedido = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al obtener el pedido"
+                mensaje: error.message
             });
         }
 };
@@ -49,7 +49,7 @@ const crearPedido = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al crear el pedido"
+                mensaje: error.message
             });
         }
 };
@@ -77,7 +77,7 @@ const actualizarPedido = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al actualizar el pedido"
+                mensaje: error.message
             });
         }
 };
@@ -100,7 +100,7 @@ const eliminarPedido = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al eliminar el pedido"
+                mensaje: error.message
             });
         }
 };

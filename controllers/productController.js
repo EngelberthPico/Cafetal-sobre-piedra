@@ -11,7 +11,7 @@ const obtenerProductos = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al obtener los productos"
+                mensaje: error.message
             });
         }
 };
@@ -33,7 +33,7 @@ const obtenerProducto = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al obtener el producto"
+                mensaje: error.message
             });
         }
 };
@@ -49,7 +49,7 @@ const crearProducto = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al crear el producto"
+                mensaje: error.message
             });
         }
 };
@@ -77,7 +77,7 @@ const actualizarProducto = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al actualizar el producto"
+                mensaje: error.message
             });
         }
 };
@@ -100,7 +100,7 @@ const eliminarProducto = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al eliminar el producto"
+                mensaje: error.message
             });
         }
 };

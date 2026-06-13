@@ -11,7 +11,7 @@ const obtenerUsuarios = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al obtener los usuarios"
+                mensaje: error.message
             });
         }
 };
@@ -33,7 +33,7 @@ const obtenerUsuario = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al obtener el usuario"
+                mensaje: error.message
             });
         }
 };
@@ -49,7 +49,7 @@ const crearUsuario = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al crear el usuario"
+                mensaje: error.message
             });
         }
 };
@@ -77,7 +77,7 @@ const actualizarUsuario = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al actualizar el usuario"
+                mensaje: error.message
             });
         }
 };
@@ -100,7 +100,7 @@ const eliminarUsuario = async (req, res) => {
         catch (error) {
             res.status(500).json({
                 exitoso: false,
-                mensaje: "Error al eliminar el usuario"
+                mensaje: error.message
             });
         }
 };
