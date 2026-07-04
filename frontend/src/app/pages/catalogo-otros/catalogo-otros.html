@@ -1,0 +1,21 @@
+<div class="container py-4">
+  <h1>Otros Productos</h1>
+
+  <h2 class="h4 mt-4">Vino de café</h2>
+  <div class="row g-3">
+    @for (item of vinos; track item.nombre) {
+      <div class="col-md-4">
+        <app-product-card [product]="item" />
+      </div>
+    }
+  </div>
+
+  <h2 class="h4 mt-5">Accesorios</h2>
+  <div class="row g-3">
+    @for (item of accesorios; track item.nombre) {
+      <div class="col-md-4">
+        <app-product-card [product]="item" />
+      </div>
+    }
+  </div>
+</div>
