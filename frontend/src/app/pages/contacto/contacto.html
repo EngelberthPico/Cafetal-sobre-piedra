@@ -1,0 +1,11 @@
+<div class="container py-4">
+  <h1>Contacto</h1>
+  <p>Escríbenos por cualquiera de estos medios:</p>
+
+  <ul class="list-unstyled fs-5">
+    <li class="mb-2"><a [href]="contacto.whatsapp" target="_blank">WhatsApp</a></li>
+    <li class="mb-2"><a [href]="contacto.instagram" target="_blank">Instagram</a></li>
+    <li class="mb-2"><a [href]="contacto.facebook" target="_blank">Facebook</a></li>
+    <li class="mb-2"><a [href]="'mailto:' + contacto.email">{{ contacto.email }}</a></li>
+  </ul>
+</div>

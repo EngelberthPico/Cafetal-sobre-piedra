@@ -3,10 +3,12 @@ import { Home } from './pages/home/home';
 import { Historia } from './pages/historia/historia';
 import { CatalogoCafe } from './pages/catalogo-cafe/catalogo-cafe';
 import { CatalogoOtros } from './pages/catalogo-otros/catalogo-otros';
+import { Contacto } from './pages/contacto/contacto';
 
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'historia', component: Historia },
   { path: 'catalogo/cafe', component: CatalogoCafe },
-  { path: 'catalogo/otros-productos', component: CatalogoOtros }
+  { path: 'catalogo/otros-productos', component: CatalogoOtros },
+  { path: 'contacto', component: Contacto }
 ];
