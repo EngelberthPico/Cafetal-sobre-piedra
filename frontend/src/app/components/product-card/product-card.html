@@ -1,1 +1,9 @@
-<p>product-card works!</p>
+<div class="card h-100">
+  <div class="card-body">
+    <h5 class="card-title">{{ product().nombre }}</h5>
+    <p class="card-text">{{ product().descripcion }}</p>
+    <p class="card-text fw-bold">
+      {{ product().precio | currency: 'COP ' :'symbol':'1.0-0' }}
+    </p>
+  </div>
+</div>

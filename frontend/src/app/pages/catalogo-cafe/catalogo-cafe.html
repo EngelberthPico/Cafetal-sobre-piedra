@@ -1,1 +1,11 @@
-<p>catalogo-cafe works!</p>
+<div class="container py-4">
+  <h1>Café Empacado</h1>
+
+  <div class="row g-3">
+    @for (item of productos; track item.nombre) {
+      <div class="col-md-4">
+        <app-product-card [product]="item" />
+      </div>
+    }
+  </div>
+</div>
