@@ -1,0 +1,120 @@
+<form [formGroup]="distribuidorForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+    <label class="form-label">Nombre del negocio</label>
+    <input type="text" class="form-control" formControlName="nombre" />
+    @if (distribuidorForm.get('nombre')?.touched && distribuidorForm.get('nombre')?.errors) {
+      <small class="text-danger">
+        @if (distribuidorForm.get('nombre')?.errors?.['required']) {
+          El nombre es obligatorio
+        }
+        @if (distribuidorForm.get('nombre')?.errors?.['minlength']) {
+          Mínimo 3 caracteres
+        }
+      </small>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Ciudad</label>
+    <input type="text" class="form-control" formControlName="ciudad" />
+    @if (distribuidorForm.get('ciudad')?.touched && distribuidorForm.get('ciudad')?.errors) {
+      <small class="text-danger">
+        @if (distribuidorForm.get('ciudad')?.errors?.['required']) {
+          La ciudad es obligatoria
+        }
+        @if (distribuidorForm.get('ciudad')?.errors?.['minlength']) {
+          Mínimo 3 caracteres
+        }
+      </small>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Dirección</label>
+    <input type="text" class="form-control" formControlName="direccion" />
+    @if (distribuidorForm.get('direccion')?.touched && distribuidorForm.get('direccion')?.errors) {
+      <small class="text-danger">
+        @if (distribuidorForm.get('direccion')?.errors?.['required']) {
+          La dirección es obligatoria
+        }
+        @if (distribuidorForm.get('direccion')?.errors?.['minlength']) {
+          Mínimo 3 caracteres
+        }
+      </small>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Tipo de distribuidor</label>
+    <select class="form-select" formControlName="tipo">
+      <option value="cafeteria">Cafetería</option>
+      <option value="tienda">Minorista</option>
+      <option value="otro">otro</option>
+    </select>
+    @if (distribuidorForm.get('tipo')?.touched && distribuidorForm.get('tipo')?.errors) {
+      <small class="text-danger">
+        @if (distribuidorForm.get('tipo')?.errors?.['required']) {
+          El tipo de negocio es obligatorio
+        }
+      </small>
+    }
+
+    </div>
+
+    <div class="mb-3">
+    <label class="form-label">Nombre de contacto</label>
+    <input type="text" class="form-control" formControlName="nombreContacto" />
+    @if (distribuidorForm.get('nombreContacto')?.touched && distribuidorForm.get('nombreContacto')?.errors) {
+      <small class="text-danger">
+        @if (distribuidorForm.get('nombreContacto')?.errors?.['required']) {
+          El nombre de contacto es obligatorio
+        }
+        @if (distribuidorForm.get('nombreContacto')?.errors?.['minlength']) {
+          Mínimo 3 caracteres
+        }
+      </small>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Teléfono</label>
+    <input type="text" class="form-control" formControlName="telefono" />
+    @if (distribuidorForm.get('telefono')?.touched && distribuidorForm.get('telefono')?.errors) {
+      <small class="text-danger">
+        @if (distribuidorForm.get('telefono')?.errors?.['required']) {
+          El teléfono es obligatorio
+        }
+        @if (distribuidorForm.get('telefono')?.errors?.['pattern']) {
+          Formato de teléfono inválido
+        }
+      </small>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input type="text" class="form-control" formControlName="email" />
+    @if (distribuidorForm.get('email')?.touched && distribuidorForm.get('email')?.errors) {
+      <small class="text-danger">
+        @if (distribuidorForm.get('email')?.errors?.['required']) {
+          El email es obligatorio
+        }
+        @if (distribuidorForm.get('email')?.errors?.['email']) {
+          Formato de email inválido
+        }
+      </small>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Comentario</label>
+    <input type="text" class="form-control" formControlName="comentario" />
+    
+  </div>
+
+  <button type="submit" class="btn btn-dark" [disabled]="distribuidorForm.invalid">
+    Enviar solicitud
+  </button>
+</form>
+
