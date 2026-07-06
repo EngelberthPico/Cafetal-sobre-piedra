@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --color-bg: #0c0b08;
+    --color-bg-alt: #17120b;
+    --color-gold: #c9a84c;
+    --color-gold-light: #e9cf83;
+    --color-cream: #f0e8d8;
+    --font-heading: 'Oswald', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --color-gold-rgb: 201, 168, 76;
+    --color-bg-rgb: 10, 9, 6;
+    --color-text-muted: #e8ddc8;
+    --navbar-height: 72px;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+}

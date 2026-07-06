@@ -6,6 +6,7 @@ import { CatalogoOtros } from './pages/catalogo-otros/catalogo-otros';
 import { Contacto } from './pages/contacto/contacto';
 import { ParaRegalar } from './pages/para-regalar/para-regalar';
 import { Distribuidor } from './pages/distribuidor/distribuidor';
+import { Recetas } from './pages/recetas/recetas';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'catalogo/otros-productos', component: CatalogoOtros },
   { path: 'contacto', component: Contacto },
   { path: 'para-regalar', component: ParaRegalar },
-  { path: 'distribuidor', component: Distribuidor }
+  { path: 'distribuidor', component: Distribuidor },
+  { path: 'recetas', component: Recetas }
 ];
