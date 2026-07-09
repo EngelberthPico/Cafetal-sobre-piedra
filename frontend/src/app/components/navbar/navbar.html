@@ -7,15 +7,7 @@
 
     <div class="nav-center">
       <a class="nav-tab" routerLink="/historia" routerLinkActive="active">Historia</a>
-
-      <div class="nav-productos-drop">
-        <span class="nav-tab">Productos</span>
-        <div class="nav-productos-menu">
-          <a class="dropdown-item" routerLink="/catalogo/cafe" routerLinkActive="active">Café empacado</a>
-          <a class="dropdown-item" routerLink="/catalogo/otros-productos" routerLinkActive="active">Otros productos</a>
-          <a class="dropdown-item" routerLink="/para-regalar" routerLinkActive="active">Para regalar</a>
-        </div>
-      </div>
+      <a class="nav-tab" routerLink="/productos" routerLinkActive="active">Productos</a>
       <a class="nav-tab" routerLink="/distribuidor" routerLinkActive="active">Distribuidores</a>
       <a class="nav-tab" routerLink="/recetas" routerLinkActive="active">Recetas</a>
       <a class="nav-tab" routerLink="/contacto" routerLinkActive="active">Contacto</a>
@@ -27,9 +19,7 @@
   @if (menuOpen()) {
     <div class="mobile-menu">
       <a class="mobile-link" routerLink="/historia" routerLinkActive="active" (click)="closeMenu()">Historia</a>
-      <a class="mobile-link" routerLink="/catalogo/cafe" routerLinkActive="active" (click)="closeMenu()">Café empacado</a>
-      <a class="mobile-link" routerLink="/catalogo/otros-productos" routerLinkActive="active" (click)="closeMenu()">Otros productos</a>
-      <a class="mobile-link" routerLink="/para-regalar" routerLinkActive="active" (click)="closeMenu()">Para regalar</a>
+      <a class="mobile-link" routerLink="/productos" routerLinkActive="active" (click)="closeMenu()">Productos</a>
       <a class="mobile-link" routerLink="/distribuidor" routerLinkActive="active" (click)="closeMenu()">Distribuidores</a>
       <a class="mobile-link" routerLink="/recetas" routerLinkActive="active" (click)="closeMenu()">Recetas</a>
       <a class="mobile-link" routerLink="/contacto" routerLinkActive="active" (click)="closeMenu()">Contacto</a>

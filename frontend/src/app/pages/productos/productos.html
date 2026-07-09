@@ -1,0 +1,46 @@
+<div class="container py-4">
+  <h1>Productos</h1>
+
+  <div class="btn-group mb-4" role="group">
+    <button class="btn" [class.btn-dark]="categoriaActiva() === 'cafe'"
+      [class.btn-outline-dark]="categoriaActiva() !== 'cafe'"
+      (click)="setCategoria('cafe')">Café empacado</button>
+    <button class="btn" [class.btn-dark]="categoriaActiva() === 'otros'"
+      [class.btn-outline-dark]="categoriaActiva() !== 'otros'"
+      (click)="setCategoria('otros')">Otros productos</button>
+    <button class="btn" [class.btn-dark]="categoriaActiva() === 'regalar'"
+      [class.btn-outline-dark]="categoriaActiva() !== 'regalar'"
+      (click)="setCategoria('regalar')">Para regalar</button>
+  </div>
+
+  @if (categoriaActiva() === 'cafe') {
+    <div class="row g-3">
+      @for (item of cafe; track item.nombre) {
+        <div class="col-md-4"><app-product-card [product]="item" /></div>
+      }
+    </div>
+  }
+
+  @if (categoriaActiva() === 'otros') {
+    <h2 class="h4 mt-4">Vino de café</h2>
+    <div class="row g-3">
+      @for (item of vinos; track item.nombre) {
+        <div class="col-md-4"><app-product-card [product]="item" /></div>
+      }
+    </div>
+    <h2 class="h4 mt-5">Accesorios</h2>
+    <div class="row g-3">
+      @for (item of accesorios; track item.nombre) {
+        <div class="col-md-4"><app-product-card [product]="item" /></div>
+      }
+    </div>
+  }
+
+  @if (categoriaActiva() === 'regalar') {
+    <div class="row g-3">
+      @for (item of combos; track item.nombre) {
+        <div class="col-md-4"><app-combo-card [combo]="item" /></div>
+      }
+    </div>
+  }
+</div>
