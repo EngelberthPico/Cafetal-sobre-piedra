@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-
+const { proteger, autorizar } = require('../middleware/authMiddleware');
 const { obtenerUsuarios,
         obtenerUsuario,
         crearUsuario,
@@ -9,13 +9,13 @@ const { obtenerUsuarios,
         eliminarUsuario
 } = require('../controllers/userController');
 
-router.get('/', obtenerUsuarios);
-router.get('/:id', obtenerUsuario);
+router.get('/', proteger, autorizar('admin'), obtenerUsuarios);
+router.get('/:id', proteger, autorizar('admin'), obtenerUsuario);
 
-router.post('/', crearUsuario);
+router.post('/', proteger, autorizar('admin'), crearUsuario);
 
-router.put('/:id', actualizarUsuario);
+router.put('/:id', proteger, autorizar('admin'), actualizarUsuario);
 
-router.delete('/:id', eliminarUsuario);
+router.delete('/:id', proteger, autorizar('admin'), eliminarUsuario);
 
 module.exports = router;

@@ -1,27 +1,20 @@
-const dns = require('dns');
-dns.setServers(['8.8.8.8', '8.8.4.4']);
-
-const express = require('express');
-const mongoose = require('mongoose');
 require('dotenv').config();
 
-const productRoutes = require('./routes/productRoutes');
-const userRoutes = require('./routes/userRoutes');
-const orderRoutes = require('./routes/orderRoutes');
+const app = require('./app');
+const conectarDB = require('./config/db');
 
+const PORT = process.env.PORT || 3000;
 
-const app = express();
+const iniciar = async () => {
+    try {
+        await conectarDB();
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
+        });
+    } catch (error) {
+        console.error('No se pudo iniciar el servidor:', error.message);
+        process.exit(1);
+    }
+};
 
-app.use(express.json());
-app.use('/api/users', userRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/orders', orderRoutes);
-
-
-mongoose.connect(process.env.MONGODB_URI, { family: 4 })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((error) => console.log('Error connecting to MongoDB', error));
-
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
-});
+iniciar();

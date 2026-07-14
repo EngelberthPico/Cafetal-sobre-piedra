@@ -40,7 +40,7 @@ const obtenerPedido = async (req, res) => {
 
 const crearPedido = async (req, res) => {
     try {
-            const pedido = await Order.create(req.body);
+            const pedido = await Order.create({ ...req.body, cliente: req.usuario._id });
             res.status(201).json({
                 exitoso: true,
                 datos: pedido

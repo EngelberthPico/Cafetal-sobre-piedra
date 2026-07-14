@@ -2,7 +2,7 @@ const User = require ('../models/user');
 
 const obtenerUsuarios = async (req, res) => {
     try {
-            const usuarios = await User.find();
+            const usuarios = await User.find().select('-password');
             res.status(200).json({
                 exitoso: true,
                 datos: usuarios
@@ -18,7 +18,7 @@ const obtenerUsuarios = async (req, res) => {
 
 const obtenerUsuario = async (req, res) => {
     try {
-            const usuario = await User.findById(req.params.id);
+            const usuario = await User.findById(req.params.id).select('-password');
             if (!usuario) {
                 return res.status(404).json({
                     exitoso: false,
@@ -29,7 +29,7 @@ const obtenerUsuario = async (req, res) => {
                 exitoso: true,
                 datos: usuario
             });
-        } 
+        }
         catch (error) {
             res.status(500).json({
                 exitoso: false,
@@ -41,6 +41,7 @@ const obtenerUsuario = async (req, res) => {
 const crearUsuario = async (req, res) => {
     try {
             const usuario = await User.create(req.body);
+            usuario.password = undefined;
             res.status(201).json({
                 exitoso: true,
                 datos: usuario
@@ -57,10 +58,10 @@ const crearUsuario = async (req, res) => {
 const actualizarUsuario = async (req, res) => {
     try {
             const usuario = await User.findByIdAndUpdate(
-                req.params.id, 
-                req.body, 
+                req.params.id,
+                req.body,
                 { new: true }
-            );
+            ).select('-password');
 
             if (!usuario) {
                 return res.status(404).json({

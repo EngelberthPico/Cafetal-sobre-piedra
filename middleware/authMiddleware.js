@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const User = require('../models/user');
 
 const proteger = async (req, res, next) => {
   try {
@@ -34,7 +34,7 @@ const proteger = async (req, res, next) => {
         // PASO 4: Buscar al usuario en la base de datos
         // El token tiene el id del usuario en su payload
         // Lo buscamos para confirmar que sigue existiendo
-        const usuario = await User.findById(decodificado.id);
+        const usuario = await User.findById(decodificado.id).select('-password');
 
         if (!usuario) {
         return res.status(401).json({ 

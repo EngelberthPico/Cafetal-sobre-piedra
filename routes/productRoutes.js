@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-
+const { proteger, autorizar } = require('../middleware/authMiddleware');
 const { obtenerProductos,
         obtenerProducto,
         crearProducto,
@@ -12,10 +12,10 @@ const { obtenerProductos,
 router.get('/', obtenerProductos);
 router.get('/:id', obtenerProducto);
 
-router.post('/', crearProducto);
+router.post('/', proteger, autorizar('admin'), crearProducto);
 
-router.put('/:id', actualizarProducto);
+router.put('/:id', proteger, autorizar('admin'), actualizarProducto);
 
-router.delete('/:id', eliminarProducto);
+router.delete('/:id', proteger, autorizar('admin'), eliminarProducto);
 
 module.exports = router;
