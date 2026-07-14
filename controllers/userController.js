@@ -57,11 +57,7 @@ const crearUsuario = async (req, res) => {
 
 const actualizarUsuario = async (req, res) => {
     try {
-            const usuario = await User.findByIdAndUpdate(
-                req.params.id,
-                req.body,
-                { new: true }
-            ).select('-password');
+            const usuario = await User.findById(req.params.id);
 
             if (!usuario) {
                 return res.status(404).json({
@@ -69,6 +65,10 @@ const actualizarUsuario = async (req, res) => {
                     mensaje: "Usuario no encontrado"
                 });
             }
+
+            usuario.set(req.body);
+            await usuario.save();
+            usuario.password = undefined;
 
             res.status(200).json({
                 exitoso: true,
@@ -85,7 +85,7 @@ const actualizarUsuario = async (req, res) => {
 
 const eliminarUsuario = async (req, res) => {
     try {
-            const usuario = await User.findByIdAndDelete(req.params.id);
+            const usuario = await User.findByIdAndDelete(req.params.id).select('-password');
             if (!usuario) {
                 return res.status(404).json({
                     exitoso: false,

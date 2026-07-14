@@ -10,7 +10,7 @@ const { obtenerPedidos,
 } = require('../controllers/orderController');
 
 router.get('/', proteger, autorizar('admin'), obtenerPedidos);
-router.get('/:id', proteger, autorizar('admin'), obtenerPedido);
+router.get('/:id', proteger, obtenerPedido);
 
 router.post('/', proteger, crearPedido);
 
