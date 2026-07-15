@@ -75,4 +75,32 @@ const autorizar = (...rolesPermitidos) => {
     };
 };
 
-module.exports = { proteger, autorizar };
+const identificarUsuarioOpcional = async (req, res, next) => {
+    let token;
+
+    if (req.headers.authorization &&
+        req.headers.authorization.startsWith('Bearer '))
+        {
+        token = req.headers.authorization.split(' ')[1];
+    }
+
+    // Sin token: sigue como invitado, no se rechaza la petición
+    if (!token) {
+        return next();
+    }
+
+    try {
+        const decodificado = jwt.verify(token, process.env.JWT_SECRET);
+        const usuario = await User.findById(decodificado.id).select('-password');
+
+        if (usuario) {
+            req.usuario = usuario;
+        }
+    } catch (error) {
+        // Token inválido o expirado: sigue como invitado
+    }
+
+    next();
+};
+
+module.exports = { proteger, autorizar, identificarUsuarioOpcional };

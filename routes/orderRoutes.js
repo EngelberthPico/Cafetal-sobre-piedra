@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { proteger, autorizar } = require('../middleware/authMiddleware');
+const { proteger, autorizar, identificarUsuarioOpcional } = require('../middleware/authMiddleware');
 const { obtenerPedidos,
         obtenerPedido,
         crearPedido,
@@ -12,7 +12,7 @@ const { obtenerPedidos,
 router.get('/', proteger, autorizar('admin'), obtenerPedidos);
 router.get('/:id', proteger, obtenerPedido);
 
-router.post('/', proteger, crearPedido);
+router.post('/', identificarUsuarioOpcional, crearPedido);
 
 router.put('/:id', proteger, autorizar('admin'), actualizarPedido);
 
