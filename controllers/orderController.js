@@ -28,7 +28,7 @@ const obtenerPedido = async (req, res) => {
 
             // Un cliente solo puede ver SUS propios pedidos.
             // El admin puede ver cualquiera.
-            const esDueno = pedido.cliente.toString() === req.usuario._id.toString();
+            const esDueno = pedido.cliente && pedido.cliente.toString() === req.usuario._id.toString();
             if (req.usuario.rol !== 'admin' && !esDueno) {
                 return res.status(403).json({
                     exitoso: false,
@@ -51,7 +51,7 @@ const obtenerPedido = async (req, res) => {
 
 const crearPedido = async (req, res) => {
     try {
-            const pedido = await Order.create({ ...req.body, cliente: req.usuario._id });
+            const pedido = await Order.create({ ...req.body, cliente: req.usuario ? req.usuario._id : null });
             res.status(201).json({
                 exitoso: true,
                 datos: pedido

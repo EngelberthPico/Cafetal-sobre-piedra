@@ -5,7 +5,19 @@ const orderSchema = new mongoose.Schema(
     cliente: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: [true, 'El cliente es obligatorio']
+      default: null
+    },
+    nombreCliente: {
+      type: String,
+      required: [true, 'El nombre del cliente es obligatorio']
+    },
+    telefono: {
+      type: String,
+      required: [true, 'El teléfono es obligatorio']
+    },
+    direccionEnvio: {
+      type: String,
+      required: [true, 'La dirección de envío es obligatoria']
     },
     productos: [
       {
