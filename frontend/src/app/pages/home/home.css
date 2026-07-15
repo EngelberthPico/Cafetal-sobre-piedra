@@ -1,6 +1,6 @@
 :host {
   display: block;
-  margin-top: calc(-1 * var(--nav-height));
+  margin-top: calc(-1 * var(--navbar-height));
 }
 
 .hero {
@@ -47,7 +47,7 @@
   position: relative;
   overflow: hidden;
   align-self: start;
-  margin-top: var(--nav-height);
+  margin-top: var(--navbar-height);
   border-radius: 0 0 22px 22px;
   background: linear-gradient(160deg, rgba(23,18,11,0.9) 0%, rgba(15,12,8,0.92) 60%, rgba(12,10,6,0.94) 100%);
   backdrop-filter: blur(7px);
@@ -168,4 +168,128 @@
     max-width: 640px;
     justify-self: start;
   }
+}
+
+.nuestro-origen {
+  background: var(--color-bg);
+  position: relative;
+  padding: clamp(70px, 10vw, 120px) clamp(16px, 4vw, 40px);
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+.nuestro-origen-kicker {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.nuestro-origen-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(30px, 4.2vw, 48px);
+  line-height: 1.05;
+  color: #f4ecda;
+  margin: 0 0 22px;
+  letter-spacing: -0.01em;
+}
+
+.nuestro-origen-text-1,
+.nuestro-origen-text-2 {
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: #c3b596;
+  margin: 0;
+}
+
+.nuestro-origen-text-2 {
+  margin-top: 16px;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(12, 11, 8, 0.35);
+  color: #e8ddc8;
+  border: 1.5px solid rgba(201, 168, 76, 0.5);
+  border-radius: 999px;
+  padding: 13px 26px;
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: 30px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background .2s, border-color .2s;
+}
+
+.btn-secondary:hover {
+  background: rgba(12, 11, 8, 0.55);
+  border-color: rgba(201, 168, 76, 0.8);
+}
+
+.origen-photo img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 40px 90px -35px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 1024px) {
+  .nuestro-origen {
+    grid-template-columns: 1fr;
+  }
+}
+
+.origen-photo {
+  position: relative;
+}
+
+.origen-photo-border {
+  position: absolute;
+  inset: -1px;
+  border-radius: 20px;
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  pointer-events: none;
+}
+
+.origen-stat-chip {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  background: rgba(12, 11, 8, 0.86);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 14px;
+  padding: 14px 20px;
+}
+
+.origen-stat-number {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 500;
+  color: #e0c069;
+  line-height: 1;
+}
+
+.origen-stat-label {
+  display: block;
+  font-size: 12.5px;
+  color: #cbbd9d;
+  margin-top: 4px;
+  letter-spacing: 0.03em;
 }
