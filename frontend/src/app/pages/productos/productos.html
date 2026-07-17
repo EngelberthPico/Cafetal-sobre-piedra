@@ -13,9 +13,18 @@
       (click)="setCategoria('regalar')">Para regalar</button>
   </div>
 
+   @if (cargando()) {
+      <p class="text-muted">Cargando productos...</p>
+    }
+
+    @if (error()) {
+      <p class="text-danger">No pudimos cargar el catálogo en este momento. Por favor intenta de nuevo en unos minutos.</p>
+    }
+
+
   @if (categoriaActiva() === 'cafe') {
     <div class="row g-3">
-      @for (item of cafe; track item.nombre) {
+      @for (item of cafe(); track item._id) {
         <div class="col-md-4"><app-product-card [product]="item" /></div>
       }
     </div>
@@ -24,13 +33,13 @@
   @if (categoriaActiva() === 'otros') {
     <h2 class="h4 mt-4">Vino de café</h2>
     <div class="row g-3">
-      @for (item of vinos; track item.nombre) {
+      @for (item of vinos(); track item._id) {
         <div class="col-md-4"><app-product-card [product]="item" /></div>
       }
     </div>
     <h2 class="h4 mt-5">Accesorios</h2>
     <div class="row g-3">
-      @for (item of accesorios; track item.nombre) {
+      @for (item of accesorios(); track item._id) {
         <div class="col-md-4"><app-product-card [product]="item" /></div>
       }
     </div>

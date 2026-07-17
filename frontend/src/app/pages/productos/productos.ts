@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
 import { ProductCard } from '../../components/product-card/product-card';
 import { ComboCard } from '../../components/combo-card/combo-card';
-import { CAFE_EMPACADO } from '../../data/cafe-empacado.data';
-import { VINO_CAFE, ACCESORIOS } from '../../data/otros-productos.data';
 import { PARA_REGALAR } from '../../data/para-regalar.data';
+import { ProductoService } from '../../services/producto.service';
+import { Product } from '../../interfaces/product.interface';
+
 
 type Categoria = 'cafe' | 'otros' | 'regalar';
 
@@ -14,12 +15,32 @@ type Categoria = 'cafe' | 'otros' | 'regalar';
   styleUrl: './productos.css',
 })
 export class Productos {
-  categoriaActiva = signal<Categoria>('cafe');
 
-  cafe = CAFE_EMPACADO;
-  vinos = VINO_CAFE;
-  accesorios = ACCESORIOS;
+  private productoService = inject(ProductoService);
+  
+
+  categoriaActiva = signal<Categoria>('cafe');
+  productos = signal<Product[]>([]);
+  cargando = signal(true);
+  error = signal(false);
   combos = PARA_REGALAR;
+
+  cafe = computed(() => this.productos().filter(p => p.categoria === 'cafe'));
+  vinos = computed(() => this.productos().filter(p => p.categoria === 'vino'));
+  accesorios = computed(() => this.productos().filter(p => p.categoria === 'cuchara'));
+
+   constructor() {
+     this.productoService.getProductos().subscribe({
+       next: (datos) => {
+         this.productos.set(datos);
+         this.cargando.set(false);
+       },
+       error: () => {
+         this.error.set(true);
+         this.cargando.set(false);
+       }
+     });
+   }
 
   setCategoria(cat: Categoria) {
     this.categoriaActiva.set(cat);
