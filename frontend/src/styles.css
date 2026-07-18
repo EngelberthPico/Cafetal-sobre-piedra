@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
     --color-bg: #0c0b08;
     --color-bg-alt: #17120b;
@@ -11,6 +17,8 @@
     --color-bg-rgb: 10, 9, 6;
     --color-text-muted: #e8ddc8;
     --navbar-height: 72px;
+    --color-text-secondary: #b7ac8e;
+    --color-button-text: #1a1200;
 }
 
 body {
