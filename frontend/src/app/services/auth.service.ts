@@ -22,13 +22,20 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http.post<AuthResponse>(`${this.URL}/login`, { email, password }).pipe(
-      tap((respuesta) => {
-        const { usuario, token } = respuesta.datos;
-        localStorage.setItem('usuario', JSON.stringify(usuario));
-        localStorage.setItem('token', token);
-        this._usuarioActual.set(usuario);
-      })
+      tap((respuesta) => this.guardarSesion(respuesta.datos.usuario, respuesta.datos.token))
     );
+  }
+
+  register(nombre: string, email: string, password: string) {
+    return this.http.post<AuthResponse>(`${this.URL}/register`, { nombre, email, password }).pipe(
+      tap((respuesta) => this.guardarSesion(respuesta.datos.usuario, respuesta.datos.token))
+    );
+  }
+
+  private guardarSesion(usuario: Usuario, token: string): void {
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+    localStorage.setItem('token', token);
+    this._usuarioActual.set(usuario);
   }
 
   logout(): void {

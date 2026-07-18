@@ -6,6 +6,7 @@ import { Distribuidor } from './pages/distribuidor/distribuidor';
 import { Recetas } from './pages/recetas/recetas';
 import { Productos } from './pages/productos/productos';
 import { Login } from './pages/login/login';
+import { Registro } from './pages/registro/registro';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'distribuidor', component: Distribuidor },
   { path: 'recetas', component: Recetas },
   { path: 'productos', component: Productos },
-  { path: 'login', component: Login }
+  { path: 'login', component: Login },
+  { path: 'registro', component: Registro }
 ];
