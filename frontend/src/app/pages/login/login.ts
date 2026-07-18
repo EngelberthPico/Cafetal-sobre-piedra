@@ -18,6 +18,9 @@ export class Login {
   cargando = signal(false);
   mostrarPassword = signal(false);
 
+  whatsappUrl = `https://wa.me/573114965150?text=${encodeURIComponent('Hola, olvidé mi contraseña de mi cuenta en Cafetal Sobre Piedra. ¿Me pueden ayudar a restablecerla?')}`;
+
+
   iconoPassword = computed(() => this.mostrarPassword() ? LucideEyeOff : LucideEye);
 
   loginForm = new FormGroup({
