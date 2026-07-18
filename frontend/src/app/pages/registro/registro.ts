@@ -5,12 +5,12 @@ import { LucideDynamicIcon, LucideEye, LucideEyeOff, LucideArrowRight } from '@l
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-registro',
   imports: [ReactiveFormsModule, RouterLink, LucideDynamicIcon, LucideArrowRight],
-  templateUrl: './login.html',
-  styleUrl: './login.css',
+  templateUrl: './registro.html',
+  styleUrl: './registro.css',
 })
-export class Login {
+export class Registro {
   private authService = inject(AuthService);
   private router = inject(Router);
 
@@ -20,7 +20,8 @@ export class Login {
 
   iconoPassword = computed(() => this.mostrarPassword() ? LucideEyeOff : LucideEye);
 
-  loginForm = new FormGroup({
+  registroForm = new FormGroup({
+    nombre: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
@@ -29,27 +30,30 @@ export class Login {
     this.mostrarPassword.set(!this.mostrarPassword());
   }
 
-  onLogin() {
-    if (this.loginForm.invalid) return;
+  onRegister() {
+    if (this.registroForm.invalid) return;
 
-    const email = this.loginForm.value.email!;
-    const password = this.loginForm.value.password!;
+    const nombre = this.registroForm.value.nombre!;
+    const email = this.registroForm.value.email!;
+    const password = this.registroForm.value.password!;
 
     this.errorMessage.set('');
     this.cargando.set(true);
 
-    this.authService.login(email, password).subscribe({
+    this.authService.register(nombre, email, password).subscribe({
       next: () => {
         this.cargando.set(false);
         this.router.navigate(['/']);
       },
       error: (err) => {
-        console.error('Error de login:', err);
+        console.error('Error de registro:', err);
         this.cargando.set(false);
-        if (err.status === 429) {
+        if (err.status === 409) {
+          this.errorMessage.set('Ese correo ya está registrado.');
+        } else if (err.status === 429) {
           this.errorMessage.set('Demasiados intentos. Espera unos minutos e intenta de nuevo.');
         } else {
-          this.errorMessage.set('Email o contraseña incorrectos');
+          this.errorMessage.set('No pudimos crear tu cuenta. Intenta de nuevo.');
         }
       }
     });
