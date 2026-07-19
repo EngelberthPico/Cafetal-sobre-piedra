@@ -1,0 +1,24 @@
+<div class="perfil-page">
+  <div class="perfil-card">
+    @if (usuario(); as user) {
+      <h1>Mi cuenta</h1>
+
+      <div class="perfil-info">
+        <div class="info-row">
+          <span class="info-label">Nombre</span>
+          <span class="info-value">{{ user.nombre }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Correo</span>
+          <span class="info-value">{{ user.email }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Tipo de cuenta</span>
+          <span class="info-value">{{ user.rol === 'admin' ? 'Administrador' : 'Cliente' }}</span>
+        </div>
+      </div>
+
+      <button class="btn-logout" (click)="cerrarSesion()">Cerrar sesión</button>
+    }
+  </div>
+</div>
