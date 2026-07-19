@@ -12,7 +12,7 @@
       <a class="nav-tab" routerLink="/recetas" routerLinkActive="active">Recetas</a>
       <a class="nav-tab" routerLink="/contacto" routerLinkActive="active">Contacto</a>
       @if (authService.estaAutenticado()){
-        <a class="nav-tab" (click)="onLogout()">Cerrar sesión</a>
+        <a class="nav-tab" routerLink="/perfil" routerLinkActive="active">Mi cuenta</a>
       } @else {
         <a class="nav-tab" routerLink="/login" routerLinkActive="active">Iniciar sesión</a>
       }
@@ -29,7 +29,7 @@
       <a class="mobile-link" routerLink="/recetas" routerLinkActive="active" (click)="closeMenu()">Recetas</a>
       <a class="mobile-link" routerLink="/contacto" routerLinkActive="active" (click)="closeMenu()">Contacto</a>
       @if (authService.estaAutenticado()) {
-        <a class="mobile-link"  (click)="onLogout()">Cerrar sesión</a>
+        <a class="mobile-link" routerLink="/perfil" routerLinkActive="active" (click)="closeMenu()">Mi cuenta</a>
       } @else {
         <a class="mobile-link" routerLink="/login" routerLinkActive="active" (click)="closeMenu()">Iniciar sesión</a>
       }

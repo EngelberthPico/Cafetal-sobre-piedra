@@ -7,6 +7,8 @@ import { Recetas } from './pages/recetas/recetas';
 import { Productos } from './pages/productos/productos';
 import { Login } from './pages/login/login';
 import { Registro } from './pages/registro/registro';
+import { Perfil} from './pages/perfil/perfil';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -16,5 +18,6 @@ export const routes: Routes = [
   { path: 'recetas', component: Recetas },
   { path: 'productos', component: Productos },
   { path: 'login', component: Login },
-  { path: 'registro', component: Registro }
+  { path: 'registro', component: Registro },
+  { path: 'perfil', component: Perfil, canActivate: [authGuard]}
 ];

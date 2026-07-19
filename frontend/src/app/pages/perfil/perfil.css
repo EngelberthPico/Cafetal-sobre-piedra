@@ -1,0 +1,68 @@
+.perfil-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 5vw, 40px);
+  min-height: calc(100vh - var(--navbar-height));
+}
+
+.perfil-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(var(--color-bg-rgb), 0.55);
+  border: 1px solid rgba(var(--color-gold-rgb), 0.2);
+  border-radius: 22px;
+  padding: clamp(24px, 3vw, 36px);
+  box-shadow: 0 30px 70px -35px rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+.perfil-card h1 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(28px, 4vw, 36px);
+  color: var(--color-cream);
+  margin: 0 0 30px;
+}
+
+.perfil-info {
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(var(--color-gold-rgb), 0.15);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.info-value {
+  color: var(--color-cream);
+  font-weight: 500;
+}
+
+.btn-logout {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid rgba(var(--color-gold-rgb), 0.4);
+  border-radius: 11px;
+  color: var(--color-gold-light);
+  font-family: var(--font-heading);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-logout:hover {
+  background: rgba(var(--color-gold-rgb), 0.1);
+}
