@@ -109,8 +109,32 @@ const perfil = async (req, res) => {
     });
 };
 
+const actualizarPerfil = async (req, res) => {
+    try {
+        const { nombre, telefono, direccion } = req.body;
+
+        if (nombre !== undefined) req.usuario.nombre = nombre;
+        if (telefono !== undefined) req.usuario.telefono = telefono;
+        if (direccion !== undefined) req.usuario.direccion = direccion;
+
+        await req.usuario.save();
+
+        res.status(200).json({
+            exitoso: true,
+            datos: req.usuario
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            exitoso: false,
+            mensaje: error.message
+        });
+    }
+};
+
 module.exports = {
     registrar,
     iniciarSesion,
-    perfil
+    perfil,
+    actualizarPerfil
 };

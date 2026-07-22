@@ -2,7 +2,7 @@ import { Injectable, inject, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Usuario } from '../interfaces/usuario.interface';
+import { Usuario, ActualizarPerfilResponse } from '../interfaces/usuario.interface';
 import { AuthResponse } from '../interfaces/auth-response.interface';
 
 @Injectable({ providedIn: 'root' })
@@ -32,9 +32,20 @@ export class AuthService {
     );
   }
 
+  actualizarPerfil(datos: { nombre?: string; telefono?: string; direccion?: string }) {
+    return this.http.put<ActualizarPerfilResponse>(`${this.URL}/me`, datos).pipe(
+      tap((respuesta) => this.actualizarUsuarioLocal(respuesta.datos))
+    );
+  }
+
   private guardarSesion(usuario: Usuario, token: string): void {
     localStorage.setItem('usuario', JSON.stringify(usuario));
     localStorage.setItem('token', token);
+    this._usuarioActual.set(usuario);
+  }
+
+  private actualizarUsuarioLocal(usuario: Usuario): void {
+    localStorage.setItem('usuario', JSON.stringify(usuario));
     this._usuarioActual.set(usuario);
   }
 
