@@ -33,6 +33,7 @@
 .info-row {
   display: flex;
   justify-content: space-between;
+  gap: 12px;
   padding: 14px 0;
   border-bottom: 1px solid rgba(var(--color-gold-rgb), 0.15);
 }
@@ -44,11 +45,31 @@
 .info-label {
   color: var(--color-text-secondary);
   font-size: 14px;
+  flex-shrink: 0;
 }
 
 .info-value {
   color: var(--color-cream);
   font-weight: 500;
+  text-align: right;
+}
+
+.btn-editar {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: var(--color-gold);
+  color: var(--color-button-text);
+  border: none;
+  border-radius: 11px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.18s;
+}
+
+.btn-editar:hover {
+  transform: translateY(-2px);
 }
 
 .btn-logout {
@@ -65,4 +86,104 @@
 
 .btn-logout:hover {
   background: rgba(var(--color-gold-rgb), 0.1);
+}
+
+form {
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-bottom: 7px;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  background: rgba(var(--color-bg-rgb), 0.6);
+  border: 1px solid rgba(var(--color-gold-rgb), 0.22);
+  border-radius: 11px;
+  padding: 12px 14px;
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  border-color: var(--color-gold);
+}
+
+.error-message {
+  background: rgba(200, 50, 50, 0.15);
+  border: 1px solid rgba(200, 50, 50, 0.4);
+  color: #f0b8b8;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.field-error {
+  color: #e88;
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 13px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.btn-cancelar {
+  flex: 1;
+  padding: 13px;
+  background: transparent;
+  border: 1px solid rgba(var(--color-gold-rgb), 0.3);
+  border-radius: 999px;
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-cancelar:hover {
+  border-color: rgba(var(--color-gold-rgb), 0.5);
+}
+
+.submit-button {
+  flex: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-gold);
+  color: var(--color-button-text);
+  border: none;
+  border-radius: 999px;
+  padding: 13px 20px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.18s;
+}
+
+.submit-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.submit-button:not(:disabled):hover {
+  transform: translateY(-2px);
 }

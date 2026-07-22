@@ -1,5 +1,5 @@
 import { Component, HostListener, signal, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,6 @@ import { AuthService } from '../../services/auth.service';
 export class Navbar {
 
   authService = inject(AuthService);
-  private router = inject(Router);
   
   scrolled = signal(false);
   menuOpen = signal(false);
@@ -28,9 +27,5 @@ export class Navbar {
     this.menuOpen.set(false);
   }
 
-  onLogout() {
-    this.authService.logout();
-    this.closeMenu();
-    this.router.navigate(['/']);
-  }
+  
 }   
