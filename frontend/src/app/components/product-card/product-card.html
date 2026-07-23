@@ -1,9 +1,43 @@
-<div class="card h-100">
-  <div class="card-body">
-    <h5 class="card-title">{{ product().nombre }}</h5>
-    <p class="card-text">{{ product().descripcion }}</p>
-    <p class="card-text fw-bold">
-      {{ product().precio | currency: 'COP ' :'symbol':'1.0-0' }}
-    </p>
+<div class="product-card" [class.product-card--compacto]="compacto()">
+  <div class="product-card-img">
+    @if (imagenUrl()) {
+      <img [src]="imagenUrl()" [alt]="product().nombre">
+    } @else {
+      <svg lucideCoffee [size]="32" [strokeWidth]="1.4"></svg>
+    }
+  </div>
+
+  <div class="product-card-body">
+    @if (!compacto()) {
+      <span class="product-card-categoria">{{ categoriaLabel() }}</span>
+    }
+
+    <h3 class="product-card-nombre">{{ product().nombre }}</h3>
+
+    @if (product().descripcion) {
+      <p class="product-card-desc">{{ product().descripcion }}</p>
+    }
+
+    <div class="product-card-footer">
+      <span class="product-card-precio">
+        {{ product().precio | currency: 'COP ' :'symbol':'1.0-0' }}
+      </span>
+      @if (!product().disponible) {
+        <span class="product-card-agotado">Agotado</span>
+      }
+    </div>
+
+    @if (product().disponible) {
+      <div class="product-card-compra">
+        <div class="qty-stepper">
+          <button type="button" class="qty-btn" (click)="decrementar()" [disabled]="cantidad() <= 1" aria-label="Restar unidad">−</button>
+          <span class="qty-valor">{{ cantidad() }}</span>
+          <button type="button" class="qty-btn" (click)="incrementar()" aria-label="Sumar unidad">+</button>
+        </div>
+        <button class="product-card-btn" [class.agregado]="agregado()" (click)="agregarAlCarrito()">
+          {{ agregado() ? '✓ Agregado' : 'Agregar' }}
+        </button>
+      </div>
+    }
   </div>
 </div>

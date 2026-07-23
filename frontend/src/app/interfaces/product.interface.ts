@@ -9,4 +9,5 @@ export interface Product {
   color?: 'dorado' | 'oro rosa';
   disponible: boolean;
   descripcion?: string;
+  imagen?: string;
 }
