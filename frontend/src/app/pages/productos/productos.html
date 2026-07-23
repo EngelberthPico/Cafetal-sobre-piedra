@@ -1,54 +1,47 @@
-<div class="container py-4">
-  <h1>Productos</h1>
+<div class="productos-page">
+  <header class="productos-header">
+    <span class="productos-kicker">Catálogo</span>
+    <h1 class="productos-title">Nuestros productos</h1>
+    <p class="productos-subtitle">Café de especialidad, vino de café y accesorios, cultivados y seleccionados en Santander.</p>
+  </header>
 
-  <div class="btn-group mb-4" role="group">
-    <button class="btn" [class.btn-dark]="categoriaActiva() === 'cafe'"
-      [class.btn-outline-dark]="categoriaActiva() !== 'cafe'"
+  <div class="productos-tabs" role="tablist">
+    <button type="button" class="tab-btn" [class.active]="categoriaActiva() === 'cafe'"
       (click)="setCategoria('cafe')">Café empacado</button>
-    <button class="btn" [class.btn-dark]="categoriaActiva() === 'otros'"
-      [class.btn-outline-dark]="categoriaActiva() !== 'otros'"
+    <button type="button" class="tab-btn" [class.active]="categoriaActiva() === 'otros'"
       (click)="setCategoria('otros')">Otros productos</button>
-    <button class="btn" [class.btn-dark]="categoriaActiva() === 'regalar'"
-      [class.btn-outline-dark]="categoriaActiva() !== 'regalar'"
-      (click)="setCategoria('regalar')">Para regalar</button>
   </div>
 
-   @if (cargando()) {
-      <p class="text-muted">Cargando productos...</p>
-    }
+  @if (cargando()) {
+    <p class="productos-estado">Cargando productos...</p>
+  }
 
-    @if (error()) {
-      <p class="text-danger">No pudimos cargar el catálogo en este momento. Por favor intenta de nuevo en unos minutos.</p>
-    }
-
+  @if (error()) {
+    <p class="productos-estado productos-estado--error">No pudimos cargar el catálogo en este momento. Por favor intenta de nuevo en unos minutos.</p>
+  }
 
   @if (categoriaActiva() === 'cafe') {
-    <div class="row g-3">
+    <div class="productos-grid">
       @for (item of cafe(); track item._id) {
-        <div class="col-6 col-md-3"><app-product-card [product]="item" [compacto]="true" /></div>
+        <div class="productos-grid-item"><app-product-card [product]="item" [compacto]="true" /></div>
+      }
+      @empty {
+        <p class="productos-estado">Muy pronto tendremos café disponible aquí.</p>
       }
     </div>
   }
 
   @if (categoriaActiva() === 'otros') {
-    <h2 class="h4 mt-4">Vino de café</h2>
-    <div class="row g-3">
+    <h2 class="productos-seccion">Vino de café</h2>
+    <div class="productos-grid">
       @for (item of vinos(); track item._id) {
-        <div class="col-6 col-md-3"><app-product-card [product]="item" [compacto]="true" /></div>
+        <div class="productos-grid-item"><app-product-card [product]="item" [compacto]="true" /></div>
       }
     </div>
-    <h2 class="h4 mt-5">Accesorios</h2>
-    <div class="row g-3">
+    <h2 class="productos-seccion productos-seccion--mt">Accesorios</h2>
+    <div class="productos-grid">
       @for (item of accesorios(); track item._id) {
-        <div class="col-6 col-md-3"><app-product-card [product]="item" [compacto]="true" /></div>
-      }
-    </div>
-  }
-
-  @if (categoriaActiva() === 'regalar') {
-    <div class="row g-3">
-      @for (item of combos; track item.nombre) {
-        <div class="col-md-4"><app-combo-card [combo]="item" /></div>
+        <div class="productos-grid-item"><app-product-card [product]="item" [compacto]="true" /></div>
       }
     </div>
   }
