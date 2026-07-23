@@ -1,0 +1,110 @@
+.productos-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: calc(var(--navbar-height) + 4px) 24px 80px;
+}
+
+.productos-header {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 40px;
+}
+
+.productos-kicker {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.productos-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 36px;
+  color: var(--color-cream);
+  margin: 10px 0 14px;
+}
+
+.productos-subtitle {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.productos-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 56px;
+}
+
+.tab-btn {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--color-gold-rgb), 0.3);
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+
+.tab-btn:hover {
+  border-color: rgba(var(--color-gold-rgb), 0.6);
+  color: var(--color-cream);
+}
+
+.tab-btn.active {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-button-text);
+}
+
+.productos-seccion {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(var(--color-gold-rgb), 0.15);
+  text-align: center;
+}
+
+.productos-seccion--mt {
+  margin-top: 48px;
+}
+
+.productos-estado {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  padding: 40px 0;
+}
+
+.productos-estado--error {
+  color: #e88;
+}
+
+.productos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+}
+
+.productos-grid-item {
+  flex: 1 1 calc(50% - 16px);
+  max-width: 280px;
+}
+
+@media (min-width: 768px) {
+  .productos-grid-item {
+    flex: 1 1 calc(33.333% - 21.333px);
+  }
+}
