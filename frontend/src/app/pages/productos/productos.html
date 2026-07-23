@@ -25,7 +25,7 @@
   @if (categoriaActiva() === 'cafe') {
     <div class="row g-3">
       @for (item of cafe(); track item._id) {
-        <div class="col-md-4"><app-product-card [product]="item" /></div>
+        <div class="col-6 col-md-3"><app-product-card [product]="item" [compacto]="true" /></div>
       }
     </div>
   }
@@ -34,13 +34,13 @@
     <h2 class="h4 mt-4">Vino de café</h2>
     <div class="row g-3">
       @for (item of vinos(); track item._id) {
-        <div class="col-md-4"><app-product-card [product]="item" /></div>
+        <div class="col-6 col-md-3"><app-product-card [product]="item" [compacto]="true" /></div>
       }
     </div>
     <h2 class="h4 mt-5">Accesorios</h2>
     <div class="row g-3">
       @for (item of accesorios(); track item._id) {
-        <div class="col-md-4"><app-product-card [product]="item" /></div>
+        <div class="col-6 col-md-3"><app-product-card [product]="item" [compacto]="true" /></div>
       }
     </div>
   }
