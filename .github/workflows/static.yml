@@ -32,8 +32,8 @@ jobs:
 
       - name: Build Angular app
         working-directory: ./frontend
-        run: npx ng build --base-href /Cafetal-sobre-piedra/ --optimization=false
-
+        run: npx ng build --base-href /Cafetal-sobre-piedra/ && npx rimraf dist/**/stats.json
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
