@@ -1,0 +1,81 @@
+<section class="checkout">
+  <div class="checkout-inner">
+    <span class="checkout-kicker">Finalizar compra</span>
+    <h1 class="checkout-title">Datos de envío</h1>
+
+    @if (pedidoExitoso()) {
+      <div class="checkout-exito">
+        <div class="checkout-exito-icono">✓</div>
+        <h2 class="checkout-exito-titulo">¡Pedido confirmado!</h2>
+        <p class="checkout-exito-texto">
+          Gracias por tu compra. Nos pondremos en contacto contigo por WhatsApp para coordinar el envío y el pago.
+        </p>
+        <a class="btn-primary" routerLink="/productos">Seguir comprando</a>
+      </div>
+    } @else if (cartService.items().length === 0) {
+      <div class="checkout-vacio">
+        <p class="checkout-vacio-texto">Tu carrito está vacío.</p>
+        <a class="btn-primary" routerLink="/productos">Ver productos</a>
+      </div>
+    } @else {
+      <div class="checkout-grid">
+        <form class="checkout-form" [formGroup]="form" (ngSubmit)="enviar()" novalidate>
+          <div class="campo">
+            <label class="campo-label" for="nombreCliente">Nombre completo</label>
+            <input class="campo-input" id="nombreCliente" type="text" formControlName="nombreCliente"
+              placeholder="Tu nombre">
+            @if (form.controls.nombreCliente.touched && form.controls.nombreCliente.invalid) {
+              <span class="campo-error">Ingresa tu nombre (mínimo 3 caracteres).</span>
+            }
+          </div>
+
+          <div class="campo">
+            <label class="campo-label" for="telefono">Teléfono (WhatsApp)</label>
+            <input class="campo-input" id="telefono" type="tel" formControlName="telefono"
+              placeholder="3114965150" maxlength="10">
+            @if (form.controls.telefono.touched && form.controls.telefono.invalid) {
+              <span class="campo-error">Ingresa un número de 10 dígitos.</span>
+            }
+          </div>
+
+          <div class="campo">
+            <label class="campo-label" for="direccionEnvio">Dirección de envío</label>
+            <input class="campo-input" id="direccionEnvio" type="text" formControlName="direccionEnvio"
+              placeholder="Calle, número, ciudad">
+            @if (form.controls.direccionEnvio.touched && form.controls.direccionEnvio.invalid) {
+              <span class="campo-error">Ingresa una dirección válida.</span>
+            }
+          </div>
+
+          @if (errorMensaje()) {
+            <p class="checkout-error-backend">{{ errorMensaje() }}</p>
+          }
+
+          <button type="submit" class="btn-primary checkout-submit" [disabled]="enviando()">
+            {{ enviando() ? 'Procesando...' : 'Confirmar pedido' }}
+          </button>
+        </form>
+
+        <aside class="checkout-resumen">
+          <h2 class="checkout-resumen-titulo">Tu pedido</h2>
+          <ul class="checkout-resumen-lista">
+            @for (item of cartService.items(); track item.producto._id) {
+              <li class="checkout-resumen-item">
+                <span class="checkout-resumen-nombre">{{ item.cantidad }} × {{ item.producto.nombre }}</span>
+                <span class="checkout-resumen-precio">
+                  {{ item.producto.precio * item.cantidad | currency: 'COP ' :'symbol':'1.0-0' }}
+                </span>
+              </li>
+            }
+          </ul>
+          <div class="checkout-resumen-total">
+            <span>Total</span>
+            <span class="checkout-resumen-total-valor">
+              {{ cartService.totalPrecio() | currency: 'COP ' :'symbol':'1.0-0' }}
+            </span>
+          </div>
+        </aside>
+      </div>
+    }
+  </div>
+</section>

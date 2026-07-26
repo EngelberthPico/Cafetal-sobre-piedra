@@ -18,7 +18,21 @@
       }
     </div>
 
-    <button class="hamburger" (click)="toggleMenu()" aria-label="Menú">☰</button>
+    <div class="nav-actions">
+      <a class="cart-link" routerLink="/carrito" routerLinkActive="active" aria-label="Carrito">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        @if (cartService.totalItems() > 0) {
+          <span class="cart-badge">{{ cartService.totalItems() }}</span>
+        }
+      </a>
+
+      <button class="hamburger" (click)="toggleMenu()" aria-label="Menú">☰</button>
+    </div>
   </nav>
 
   @if (menuOpen()) {
@@ -28,6 +42,7 @@
       <a class="mobile-link" routerLink="/distribuidor" routerLinkActive="active" (click)="closeMenu()">Distribuidores</a>
       <a class="mobile-link" routerLink="/recetas" routerLinkActive="active" (click)="closeMenu()">Recetas</a>
       <a class="mobile-link" routerLink="/contacto" routerLinkActive="active" (click)="closeMenu()">Contacto</a>
+      <a class="mobile-link" routerLink="/carrito" routerLinkActive="active" (click)="closeMenu()">Carrito ({{ cartService.totalItems() }})</a>
       @if (authService.estaAutenticado()) {
         <a class="mobile-link" routerLink="/perfil" routerLinkActive="active" (click)="closeMenu()">Mi cuenta</a>
       } @else {

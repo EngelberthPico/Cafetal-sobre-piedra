@@ -8,6 +8,7 @@ export interface Product {
   tipo?: 'molido' | 'grano';
   color?: 'dorado' | 'oro rosa';
   disponible: boolean;
+  stock?: number;
   descripcion?: string;
   imagen?: string;
 }

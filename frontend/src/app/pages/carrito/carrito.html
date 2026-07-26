@@ -1,0 +1,51 @@
+<section class="carrito">
+  <div class="carrito-inner">
+    <span class="carrito-kicker">Tu pedido</span>
+    <h1 class="carrito-title">Carrito de compras</h1>
+
+    @if (cartService.items().length === 0) {
+      <div class="carrito-vacio">
+        <p class="carrito-vacio-texto">Todavía no has agregado productos.</p>
+        <a class="btn-primary" routerLink="/productos">Ver productos</a>
+      </div>
+    } @else {
+      <div class="carrito-lista">
+        @for (item of cartService.items(); track item.producto._id) {
+          <article class="carrito-item">
+            <div class="carrito-item-info">
+              <h3 class="carrito-item-nombre">{{ item.producto.nombre }}</h3>
+              <span class="carrito-item-precio">
+                {{ item.producto.precio | currency: 'COP ' :'symbol':'1.0-0' }} c/u
+              </span>
+            </div>
+
+            <div class="carrito-item-controles">
+              <div class="qty-stepper">
+                <button type="button" class="qty-btn" (click)="decrementar(item)" aria-label="Restar unidad">−</button>
+                <span class="qty-valor">{{ item.cantidad }}</span>
+                <button type="button" class="qty-btn" (click)="incrementar(item)" aria-label="Sumar unidad">+</button>
+              </div>
+
+              <span class="carrito-item-subtotal">
+                {{ item.producto.precio * item.cantidad | currency: 'COP ' :'symbol':'1.0-0' }}
+              </span>
+
+              <button type="button" class="carrito-item-quitar" (click)="quitar(item)" aria-label="Quitar del carrito">✕</button>
+            </div>
+          </article>
+        }
+      </div>
+
+      <div class="carrito-resumen">
+        <div class="carrito-total-fila">
+          <span class="carrito-total-label">Total</span>
+          <span class="carrito-total-valor">
+            {{ cartService.totalPrecio() | currency: 'COP ' :'symbol':'1.0-0' }}
+          </span>
+        </div>
+        <a class="btn-primary carrito-checkout-btn" routerLink="/checkout">Continuar al pago</a>
+        <a class="carrito-seguir" routerLink="/productos">Seguir comprando</a>
+      </div>
+    }
+  </div>
+</section>

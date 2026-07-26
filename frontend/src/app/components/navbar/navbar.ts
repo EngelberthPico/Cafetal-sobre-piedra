@@ -1,6 +1,7 @@
 import { Component, HostListener, signal, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-navbar',
   imports: [RouterLink, RouterLinkActive],
@@ -10,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class Navbar {
 
   authService = inject(AuthService);
+  cartService = inject(CartService);
   
   scrolled = signal(false);
   menuOpen = signal(false);
