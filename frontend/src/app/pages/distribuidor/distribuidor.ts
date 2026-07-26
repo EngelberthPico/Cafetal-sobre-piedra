@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,8 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
   styleUrl: './distribuidor.css',
 })
 export class Distribuidor {
+  completo = input<boolean>(true);
+
   distribuidorForm = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
     ciudad: new FormControl('', [Validators.required, Validators.minLength(3)]),

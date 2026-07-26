@@ -1,0 +1,55 @@
+<div class="insignia-page">
+
+  <section class="insignia-hero">
+    <div class="insignia-hero-inner">
+      <span class="insignia-kicker">Programa de fidelidad</span>
+      <h1 class="insignia-title">Tu fidelidad, recompensada</h1>
+      <p class="insignia-text">Por cada 10 libras de café que compres con nosotros, te premiamos con un precio especial en tu siguiente compra. Entre más disfrutas nuestro café, más ahorras.</p>
+      <p class="insignia-aviso">Necesitas una cuenta para que tus compras se acumulen automáticamente.</p>
+    </div>
+  </section>
+
+  <section class="insignia-pasos">
+    <div class="insignia-pasos-inner">
+      <span class="insignia-kicker insignia-kicker--center">Cómo funciona</span>
+      <h2 class="insignia-pasos-title">Tres pasos simples</h2>
+
+      <div class="pasos-grid">
+        <div class="paso-card">
+          <span class="paso-numero">01</span>
+          <h3>Crea tu cuenta</h3>
+          <p>Regístrate para que cada compra quede asociada a tu perfil.</p>
+        </div>
+        <div class="paso-card">
+          <span class="paso-numero">02</span>
+          <h3>Acumula 10 libras</h3>
+          <p>No importa si es en una sola compra o varias — lo que cuenta es el total acumulado en tu cuenta.</p>
+        </div>
+        <div class="paso-card">
+          <span class="paso-numero">03</span>
+          <h3>Recibe tu descuento</h3>
+          <p>Al llegar a las 10 libras, tu siguiente compra tiene un precio especial.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="insignia-cta">
+    <span class="insignia-kicker insignia-kicker--center">Empieza hoy</span>
+    <h2 class="insignia-cta-title">Cada bolsa te acerca más a tu recompensa</h2>
+    <div class="insignia-cta-botones">
+      @if (authService.estaAutenticado()) {
+        <a routerLink="/productos" class="btn-primary">
+          Ver catálogo
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      } @else {
+        <a routerLink="/registro" class="btn-primary">Crear cuenta</a>
+        <a routerLink="/productos" class="btn-secondary-link">Ver catálogo</a>
+      }
+    </div>
+  </section>
+
+</div>

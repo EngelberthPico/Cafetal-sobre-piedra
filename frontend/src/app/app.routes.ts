@@ -8,6 +8,7 @@ import { Productos } from './pages/productos/productos';
 import { Login } from './pages/login/login';
 import { Registro } from './pages/registro/registro';
 import { Perfil} from './pages/perfil/perfil';
+import { Insignia } from './pages/insignia/insignia';
 import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
@@ -19,5 +20,6 @@ export const routes: Routes = [
   { path: 'productos', component: Productos },
   { path: 'login', component: Login },
   { path: 'registro', component: Registro },
-  { path: 'perfil', component: Perfil, canActivate: [authGuard]}
+  { path: 'perfil', component: Perfil, canActivate: [authGuard]},
+  { path: 'insignia', component: Insignia }
 ];

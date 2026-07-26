@@ -9,6 +9,15 @@ const crearToken = (usuario) => {
     );
 };
 
+const formatearUsuario = (usuario) => ({
+    id: usuario._id,
+    nombre: usuario.nombre,
+    email: usuario.email,
+    rol: usuario.rol,
+    telefono: usuario.telefono,
+    direccion: usuario.direccion
+});
+
 const registrar = async (req, res) => {
     try {
         const { nombre, email, password } = req.body;
@@ -34,12 +43,7 @@ const registrar = async (req, res) => {
         res.status(201).json({
             exitoso: true,
             datos: {
-                usuario: {
-                    id: usuario._id,
-                    nombre: usuario.nombre,
-                    email: usuario.email,
-                    rol: usuario.rol
-                },
+                usuario: formatearUsuario(usuario),
                 token
             }
         });
@@ -84,12 +88,7 @@ const iniciarSesion = async (req, res) => {
         res.status(200).json({
             exitoso: true,
             datos: {
-                usuario: {
-                    id: usuario._id,
-                    nombre: usuario.nombre,
-                    email: usuario.email,
-                    rol: usuario.rol
-                },
+                usuario: formatearUsuario(usuario),
                 token
             }
         });
