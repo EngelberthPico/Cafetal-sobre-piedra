@@ -1,0 +1,124 @@
+.contacto {
+  background: var(--color-bg);
+  min-height: 70vh;
+}
+
+.contacto-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: calc(var(--navbar-height) + 32px) clamp(16px, 4vw, 40px) clamp(70px, 9vw, 110px);
+  text-align: center;
+}
+
+.contacto-kicker {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.contacto-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(30px, 4.2vw, 48px);
+  color: var(--color-cream);
+  margin: 0 0 18px;
+}
+
+.contacto-subtitle {
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin: 0 auto 44px;
+  max-width: 520px;
+}
+
+.contacto-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .contacto-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contacto-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid rgba(var(--color-gold-rgb), 0.2);
+  border-radius: 16px;
+  padding: 20px 22px;
+  background: rgba(var(--color-bg-rgb), 0.55);
+  text-decoration: none;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.contacto-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(var(--color-gold-rgb), 0.45);
+}
+
+.contacto-card-icono {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(var(--color-gold-rgb), 0.1);
+  color: var(--color-gold);
+}
+
+.contacto-card-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.contacto-card-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.contacto-card-valor {
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  font-weight: 500;
+  color: var(--color-cream);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contacto-card-flecha {
+  margin-left: auto;
+  color: var(--color-gold-light);
+  font-size: 16px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.contacto-card:hover .contacto-card-flecha {
+  opacity: 1;
+}
+
+.contacto-ubicacion {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--color-text-secondary);
+  margin: 40px 0 0;
+}
