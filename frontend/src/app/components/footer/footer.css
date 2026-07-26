@@ -80,8 +80,7 @@
   gap: 9px;
 }
 
-.footer-cert-text,
-.footer-cert-pending {
+.footer-cert-text {
   font-size: 13px;
   line-height: 1.55;
   color: var(--color-text-secondary);
@@ -93,9 +92,17 @@
   font-weight: 500;
 }
 
-.footer-cert-pending {
-  font-style: italic;
-  opacity: 0.7;
+.footer-sellos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 6px 0 2px;
+}
+
+.footer-sello-img {
+  width: 90px;
+  height: auto;
 }
 
 .footer-bottom {
