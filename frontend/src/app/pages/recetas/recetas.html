@@ -1,1 +1,42 @@
-<p>recetas works!</p>
+<section class="recetas">
+  <div class="recetas-inner">
+    <header class="recetas-header">
+      <span class="recetas-kicker">Inspiración</span>
+      <h1 class="recetas-title">Recetas y preparaciones</h1>
+      <p class="recetas-subtitle">
+        Sácale el máximo provecho a tu café de especialidad con estas preparaciones clásicas de cafetería,
+        pensadas para hacerlas en casa.
+      </p>
+    </header>
+
+    <div class="recetas-grid">
+      @for (receta of recetas; track receta.nombre) {
+        <article class="receta-card">
+          <div class="receta-card-head">
+            <h2 class="receta-nombre">{{ receta.nombre }}</h2>
+            <span class="receta-rinde">{{ receta.rinde }}</span>
+          </div>
+          <p class="receta-desc">{{ receta.descripcion }}</p>
+
+          <div class="receta-bloque">
+            <span class="receta-bloque-titulo">Ingredientes</span>
+            <ul class="receta-ingredientes">
+              @for (ingrediente of receta.ingredientes; track ingrediente) {
+                <li>{{ ingrediente }}</li>
+              }
+            </ul>
+          </div>
+
+          <div class="receta-bloque">
+            <span class="receta-bloque-titulo">Preparación</span>
+            <ol class="receta-pasos">
+              @for (paso of receta.pasos; track paso) {
+                <li>{{ paso }}</li>
+              }
+            </ol>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
