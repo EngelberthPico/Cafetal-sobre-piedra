@@ -12,7 +12,9 @@ import { Insignia } from './pages/insignia/insignia';
 import { Carrito } from './pages/carrito/carrito';
 import { Checkout } from './pages/checkout/checkout';
 import { Certificaciones } from './pages/certificaciones/certificaciones';
+import { AdminProductos } from './pages/admin-productos/admin-productos';
 import { authGuard } from './guards/auth-guard';
+import { adminGuard } from './guards/admin-guard';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -27,5 +29,6 @@ export const routes: Routes = [
   { path: 'insignia', component: Insignia },
   { path: 'carrito', component: Carrito },
   { path: 'checkout', component: Checkout },
-  { path: 'certificaciones', component: Certificaciones }
+  { path: 'certificaciones', component: Certificaciones },
+  { path: 'admin/productos', component: AdminProductos, canActivate: [adminGuard] }
 ];

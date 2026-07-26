@@ -1,0 +1,126 @@
+<section class="admin">
+  <div class="admin-inner">
+    <span class="admin-kicker">Panel de control</span>
+    <h1 class="admin-title">Administración de productos</h1>
+    <p class="admin-subtitle">Crea, edita el precio y stock, y elimina los productos del catálogo.</p>
+
+    @if (mensaje()) {
+      <p class="admin-alerta admin-alerta--ok">{{ mensaje() }}</p>
+    }
+    @if (mensajeError()) {
+      <p class="admin-alerta admin-alerta--error">{{ mensajeError() }}</p>
+    }
+
+    <!-- TABLA -->
+    @if (cargando()) {
+      <p class="admin-estado">Cargando productos...</p>
+    } @else if (error()) {
+      <p class="admin-estado admin-estado--error">No pudimos cargar los productos.</p>
+    } @else {
+      <div class="admin-tabla-wrap">
+        <table class="admin-tabla">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Disponible</th>
+              <th class="admin-col-acciones">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (p of productos(); track p._id) {
+              <tr [class.editando]="editandoId() === p._id">
+                <td data-label="Nombre">{{ p.nombre }}</td>
+                <td data-label="Categoría"><span class="admin-cat">{{ p.categoria }}</span></td>
+
+                @if (editandoId() === p._id) {
+                  <td data-label="Precio">
+                    <input class="admin-input-mini" type="number" min="0" [formControl]="editForm.controls.precio">
+                  </td>
+                  <td data-label="Stock">
+                    <input class="admin-input-mini" type="number" min="0" [formControl]="editForm.controls.stock">
+                  </td>
+                  <td data-label="Disponible">
+                    <input type="checkbox" [formControl]="editForm.controls.disponible">
+                  </td>
+                  <td data-label="Acciones" class="admin-col-acciones">
+                    <button class="btn-mini btn-mini--ok" (click)="guardarEdicion(p._id!)" [disabled]="guardando()">Guardar</button>
+                    <button class="btn-mini" (click)="cancelarEdicion()">Cancelar</button>
+                  </td>
+                } @else {
+                  <td data-label="Precio">{{ p.precio | currency: 'COP ' :'symbol':'1.0-0' }}</td>
+                  <td data-label="Stock">{{ p.stock ?? 0 }}</td>
+                  <td data-label="Disponible">
+                    <span class="admin-badge" [class.admin-badge--si]="p.disponible" [class.admin-badge--no]="!p.disponible">
+                      {{ p.disponible ? 'Sí' : 'No' }}
+                    </span>
+                  </td>
+                  <td data-label="Acciones" class="admin-col-acciones">
+                    @if (confirmandoEliminarId() === p._id) {
+                      <span class="admin-confirm">¿Eliminar?</span>
+                      <button class="btn-mini btn-mini--danger" (click)="confirmarEliminacion(p._id!)" [disabled]="guardando()">Sí</button>
+                      <button class="btn-mini" (click)="cancelarEliminacion()">No</button>
+                    } @else {
+                      <button class="btn-mini" (click)="iniciarEdicion(p)">Editar</button>
+                      <button class="btn-mini btn-mini--danger" (click)="pedirConfirmacion(p._id!)">Eliminar</button>
+                    }
+                  </td>
+                }
+              </tr>
+            } @empty {
+              <tr><td colspan="6" class="admin-estado">No hay productos todavía.</td></tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+
+    <!-- CREAR -->
+    <div class="admin-crear">
+      <h2 class="admin-crear-titulo">Agregar producto</h2>
+      <form class="admin-form" [formGroup]="nuevoForm" (ngSubmit)="crear()" novalidate>
+        <div class="admin-form-grid">
+          <div class="campo">
+            <label class="campo-label" for="nombre">Nombre</label>
+            <input class="campo-input" id="nombre" type="text" formControlName="nombre" placeholder="Ej. Café 250g molido">
+          </div>
+
+          <div class="campo">
+            <label class="campo-label" for="categoria">Categoría</label>
+            <select class="campo-input" id="categoria" formControlName="categoria">
+              <option value="cafe">Café</option>
+              <option value="vino">Vino de café</option>
+              <option value="cuchara">Accesorio</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label class="campo-label" for="precio">Precio (COP)</label>
+            <input class="campo-input" id="precio" type="number" min="0" formControlName="precio" placeholder="25000">
+          </div>
+
+          <div class="campo">
+            <label class="campo-label" for="stock">Stock</label>
+            <input class="campo-input" id="stock" type="number" min="0" formControlName="stock">
+          </div>
+
+          <div class="campo campo--full">
+            <label class="campo-label" for="descripcion">Descripción (opcional)</label>
+            <input class="campo-input" id="descripcion" type="text" formControlName="descripcion" placeholder="Notas del producto">
+          </div>
+
+          <label class="campo-check">
+            <input type="checkbox" formControlName="disponible">
+            <span>Disponible para la venta</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary" [disabled]="guardando()">
+          {{ guardando() ? 'Guardando...' : 'Crear producto' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -11,6 +11,9 @@
       <a class="nav-tab" routerLink="/distribuidor" routerLinkActive="active">Distribuidores</a>
       <a class="nav-tab" routerLink="/recetas" routerLinkActive="active">Recetas</a>
       <a class="nav-tab" routerLink="/contacto" routerLinkActive="active">Contacto</a>
+      @if (authService.usuarioActual()?.rol === 'admin') {
+        <a class="nav-tab nav-tab--admin" routerLink="/admin/productos" routerLinkActive="active">Panel de admin</a>
+      }
       @if (authService.estaAutenticado()){
         <a class="nav-tab" routerLink="/perfil" routerLinkActive="active">Mi cuenta</a>
       } @else {
@@ -43,6 +46,9 @@
       <a class="mobile-link" routerLink="/recetas" routerLinkActive="active" (click)="closeMenu()">Recetas</a>
       <a class="mobile-link" routerLink="/contacto" routerLinkActive="active" (click)="closeMenu()">Contacto</a>
       <a class="mobile-link" routerLink="/carrito" routerLinkActive="active" (click)="closeMenu()">Carrito ({{ cartService.totalItems() }})</a>
+      @if (authService.usuarioActual()?.rol === 'admin') {
+        <a class="mobile-link" routerLink="/admin/productos" routerLinkActive="active" (click)="closeMenu()">Panel de admin</a>
+      }
       @if (authService.estaAutenticado()) {
         <a class="mobile-link" routerLink="/perfil" routerLinkActive="active" (click)="closeMenu()">Mi cuenta</a>
       } @else {
