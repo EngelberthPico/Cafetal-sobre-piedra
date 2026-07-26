@@ -70,6 +70,8 @@
   border-radius: 8px;
   cursor: pointer;
   transition: color .2s;
+  white-space: nowrap;
+
 }
 
 .nav-tab:hover,
