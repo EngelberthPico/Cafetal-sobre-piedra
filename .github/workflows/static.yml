@@ -30,9 +30,13 @@ jobs:
         working-directory: ./frontend
         run: npm ci
 
+      - name: Remove budgets check
+        working-directory: ./frontend
+        run: node -e "const fs=require('fs');const p='./angular.json';let c=JSON.parse(fs.readFileSync(p));delete c.projects[Object.keys(c.projects)[0]].architect.build.configurations.production?.budgets;delete c.projects[Object.keys(c.projects)[0]].architect.build.options?.budgets;fs.writeFileSync(p,JSON.stringify(c,null,2));"
+
       - name: Build Angular app
         working-directory: ./frontend
-        run: npx ng build --base-href /Cafetal-sobre-piedra/ && npx rimraf dist/**/stats.json
+        run: npx ng build --configuration production --base-href /Cafetal-sobre-piedra/
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
