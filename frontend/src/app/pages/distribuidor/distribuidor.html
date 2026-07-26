@@ -8,6 +8,12 @@
     </div>
   }
 
+  @if (enviado()) {
+    <div class="distribuidor-exito">
+      <p class="distribuidor-exito-titulo">¡Solicitud enviada!</p>
+      <p class="distribuidor-exito-texto">Gracias por tu interés. Revisaremos tu información y nos pondremos en contacto contigo pronto.</p>
+    </div>
+  } @else {
   <form [formGroup]="distribuidorForm" (ngSubmit)="onSubmit()" class="distribuidor-form">
     <div class="form-row">
       <div class="form-group">
@@ -101,13 +107,18 @@
       </div>
     </div>
 
-    <button type="submit" class="submit-button" [disabled]="distribuidorForm.invalid">
-      Enviar solicitud
+    @if (errorMensaje()) {
+      <p class="distribuidor-error">{{ errorMensaje() }}</p>
+    }
+
+    <button type="submit" class="submit-button" [disabled]="distribuidorForm.invalid || enviando()">
+      {{ enviando() ? 'Enviando...' : 'Enviar solicitud' }}
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
       </svg>
     </button>
   </form>
+  }
 
   @if (completo()) {
     <div class="distribuidores-actuales">

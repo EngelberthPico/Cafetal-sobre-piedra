@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, input, inject, signal } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { DistributorService } from '../../services/distributor.service';
 
 @Component({
   selector: 'app-distribuidor',
@@ -9,6 +10,12 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 })
 export class Distribuidor {
   completo = input<boolean>(true);
+
+  private distributorService = inject(DistributorService);
+
+  enviando = signal(false);
+  enviado = signal(false);
+  errorMensaje = signal('');
 
   distribuidorForm = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -22,6 +29,38 @@ export class Distribuidor {
   });
 
   onSubmit() {
-    console.log(this.distribuidorForm.value);
+    if (this.distribuidorForm.invalid) {
+      this.distribuidorForm.markAllAsTouched();
+      return;
+    }
+
+    this.enviando.set(true);
+    this.errorMensaje.set('');
+
+    const valores = this.distribuidorForm.value;
+    const solicitud = {
+      nombre: valores.nombre!,
+      ciudad: valores.ciudad!,
+      direccion: valores.direccion!,
+      tipo: valores.tipo!,
+      nombreContacto: valores.nombreContacto!,
+      telefono: valores.telefono!,
+      email: valores.email!,
+      comentario: valores.comentario || undefined,
+    };
+
+    this.distributorService.enviarSolicitud(solicitud).subscribe({
+      next: () => {
+        this.enviado.set(true);
+        this.enviando.set(false);
+        this.distribuidorForm.reset({ tipo: 'cafeteria' });
+      },
+      error: (err) => {
+        this.errorMensaje.set(
+          err?.error?.mensaje || 'No pudimos enviar tu solicitud. Intenta de nuevo.'
+        );
+        this.enviando.set(false);
+      },
+    });
   }
 }
