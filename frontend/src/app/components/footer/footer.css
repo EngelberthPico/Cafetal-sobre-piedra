@@ -88,6 +88,11 @@
   margin: 0;
 }
 
+.footer-cert-link {
+  color: var(--color-gold-light);
+  font-weight: 500;
+}
+
 .footer-cert-pending {
   font-style: italic;
   opacity: 0.7;

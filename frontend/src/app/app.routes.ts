@@ -11,6 +11,7 @@ import { Perfil} from './pages/perfil/perfil';
 import { Insignia } from './pages/insignia/insignia';
 import { Carrito } from './pages/carrito/carrito';
 import { Checkout } from './pages/checkout/checkout';
+import { Certificaciones } from './pages/certificaciones/certificaciones';
 import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
@@ -25,5 +26,6 @@ export const routes: Routes = [
   { path: 'perfil', component: Perfil, canActivate: [authGuard]},
   { path: 'insignia', component: Insignia },
   { path: 'carrito', component: Carrito },
-  { path: 'checkout', component: Checkout }
+  { path: 'checkout', component: Checkout },
+  { path: 'certificaciones', component: Certificaciones }
 ];
