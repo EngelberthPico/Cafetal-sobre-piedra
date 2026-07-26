@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-checkout',
@@ -15,15 +16,16 @@ export class Checkout {
   cartService = inject(CartService);
   private orderService = inject(OrderService);
   private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
 
   enviando = signal(false);
   pedidoExitoso = signal(false);
   errorMensaje = signal('');
 
   form = this.fb.group({
-    nombreCliente: ['', [Validators.required, Validators.minLength(3)]],
-    telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-    direccionEnvio: ['', [Validators.required, Validators.minLength(6)]],
+    nombreCliente: [this.authService.usuarioActual()?.nombre ?? '', [Validators.required, Validators.minLength(3)]],
+    telefono: [this.authService.usuarioActual()?.telefono ?? '', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+    direccionEnvio: [this.authService.usuarioActual()?.direccion ?? '', [Validators.required, Validators.minLength(6)]],
   });
 
   enviar() {

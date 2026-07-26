@@ -22,17 +22,17 @@
       <span class="product-card-precio">
         {{ product().precio | currency: 'COP ' :'symbol':'1.0-0' }}
       </span>
-      @if (!product().disponible) {
+      @if (!product().disponible || sinStock()) {
         <span class="product-card-agotado">Agotado</span>
       }
     </div>
 
-    @if (product().disponible) {
+    @if (product().disponible && !sinStock()) {
       <div class="product-card-compra">
         <div class="qty-stepper">
           <button type="button" class="qty-btn" (click)="decrementar()" [disabled]="cantidad() <= 1" aria-label="Restar unidad">−</button>
           <span class="qty-valor">{{ cantidad() }}</span>
-          <button type="button" class="qty-btn" (click)="incrementar()" aria-label="Sumar unidad">+</button>
+          <button type="button" class="qty-btn" (click)="incrementar()" [disabled]="cantidad() >= maxCantidad()" aria-label="Sumar unidad">+</button>
         </div>
         <button class="product-card-btn" [class.agregado]="agregado()" (click)="agregarAlCarrito()">
           {{ agregado() ? '✓ Agregado' : 'Agregar' }}

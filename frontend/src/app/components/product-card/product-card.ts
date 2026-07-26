@@ -34,8 +34,11 @@ export class ProductCard {
   cantidad = signal(1);
   agregado = signal(false);
 
+  maxCantidad = computed(() => this.product().stock ?? 0);
+  sinStock = computed(() => this.maxCantidad() <= 0);
+
   incrementar() {
-    this.cantidad.update((c) => c + 1);
+    this.cantidad.update((c) => Math.min(c + 1, this.maxCantidad()));
   }
 
   decrementar() {
@@ -43,6 +46,7 @@ export class ProductCard {
   }
 
   agregarAlCarrito() {
+    if (this.sinStock() || this.cantidad() > this.maxCantidad()) return;
     this.cartService.agregar(this.product(), this.cantidad());
     this.agregado.set(true);
     this.cantidad.set(1);
