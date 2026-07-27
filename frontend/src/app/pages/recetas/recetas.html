@@ -12,6 +12,9 @@
     <div class="recetas-grid">
       @for (receta of recetas; track receta.nombre) {
         <article class="receta-card">
+          @if (receta.imagen) {
+           <img [src]="receta.imagen" [alt]="receta.nombre" class="receta-imagen">
+         }
           <div class="receta-card-head">
             <h2 class="receta-nombre">{{ receta.nombre }}</h2>
             <span class="receta-rinde">{{ receta.rinde }}</span>

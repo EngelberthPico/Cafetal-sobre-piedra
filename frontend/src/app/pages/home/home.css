@@ -523,3 +523,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+.receta-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

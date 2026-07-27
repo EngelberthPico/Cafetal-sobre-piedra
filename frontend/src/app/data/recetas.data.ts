@@ -4,16 +4,18 @@ export interface Receta {
   rinde: string;
   ingredientes: string[];
   pasos: string[];
+  imagen?: string;
 }
 
 // El campo `nombre` se conserva porque el teaser "Recetas destacadas" del Home
 // (home.html) lo usa para renderizar y hacer track del @for.
 export const RECETAS_DESTACADAS: Receta[] = [
   {
-    nombre: 'Capuchino',
+    nombre: 'Capuccino',
     descripcion:
       'El clásico italiano: espresso intenso, leche vaporizada y una capa cremosa de espuma. Perfecto para empezar la mañana.',
     rinde: '1 taza',
+    imagen: '/capuccino.jpg',
     ingredientes: [
       '18 g de café molido Cafetal Sobre Piedra (molienda fina para espresso)',
       '120 ml de leche entera',
@@ -31,6 +33,7 @@ export const RECETAS_DESTACADAS: Receta[] = [
     descripcion:
       'Bebida fría y espumosa, licuada con hielo. Refrescante y con todo el sabor del café de especialidad.',
     rinde: '1 vaso grande',
+    imagen: '/frappe.jpg',
     ingredientes: [
       '60 ml de café concentrado frío (o un espresso doble enfriado) de Cafetal Sobre Piedra',
       '150 ml de leche',
@@ -50,6 +53,7 @@ export const RECETAS_DESTACADAS: Receta[] = [
     descripcion:
       'Café frío con leche y un toque dulce de caramelo, servido sobre hielo. Suave, dulce y muy fácil de preparar.',
     rinde: '1 vaso grande',
+    imagen: '/caramel-ice.jpg',
     ingredientes: [
       '60 ml de café concentrado frío (o un espresso doble enfriado) de Cafetal Sobre Piedra',
       '150 ml de leche',
