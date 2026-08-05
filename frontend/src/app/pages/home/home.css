@@ -115,19 +115,25 @@
   max-width: 400px;
 }
 
-.btn-primary {
+.btn-primary,
+.btn-secondary,
+.btn-outline-gold,
+.btn-ver-catalogo {
   display: inline-flex;
   align-items: center;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  text-decoration: none;
+}
+
+.btn-primary {
   gap: 9px;
   background: var(--color-gold);
   color: #1a1200;
   border: none;
-  border-radius: 999px;
   padding: 15px 30px;
-  font-family: var(--font-body);
   font-size: 16px;
   font-weight: 600;
-  text-decoration: none;
   margin-top: 30px;
   box-shadow: 0 12px 30px -10px rgba(var(--color-gold-rgb), 0.5);
   transition: transform .18s, box-shadow .18s;
@@ -182,7 +188,10 @@
   align-items: center;
 }
 
-.nuestro-origen-kicker {
+.nuestro-origen-kicker,
+.destacados-kicker,
+.distribuidor-kicker,
+.recetas-kicker {
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 3px;
@@ -192,14 +201,20 @@
   margin-bottom: 14px;
 }
 
-.nuestro-origen-title {
+.nuestro-origen-title,
+.destacados-title,
+.distribuidor-title,
+.recetas-title {
   font-family: var(--font-heading);
   font-weight: 600;
+  color: #f4ecda;
+  letter-spacing: -0.01em;
+}
+
+.nuestro-origen-title {
   font-size: clamp(30px, 4.2vw, 48px);
   line-height: 1.05;
-  color: #f4ecda;
   margin: 0 0 22px;
-  letter-spacing: -0.01em;
 }
 
 .nuestro-origen-text-1,
@@ -215,18 +230,13 @@
 }
 
 .btn-secondary {
-  display: inline-flex;
-  align-items: center;
   gap: 8px;
   background: rgba(12, 11, 8, 0.35);
   color: #e8ddc8;
   border: 1.5px solid rgba(201, 168, 76, 0.5);
-  border-radius: 999px;
   padding: 13px 26px;
-  font-family: var(--font-body);
   font-size: 15.5px;
   font-weight: 500;
-  text-decoration: none;
   margin-top: 30px;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -305,23 +315,9 @@
   text-align: center;
 }
 
-.destacados-kicker {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  display: block;
-  margin-bottom: 14px;
-}
-
 .destacados-title {
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: clamp(30px, 4.2vw, 48px);
-  color: #f4ecda;
   margin: 0 0 44px;
-  letter-spacing: -0.01em;
 }
 
 .destacados-loading {
@@ -336,23 +332,20 @@
   text-align: left;
 }
 
+.btn-outline-gold,
 .btn-ver-catalogo {
-  display: inline-flex;
-  align-items: center;
   gap: 8px;
   background: transparent;
   color: var(--color-gold-light);
   border: 1.5px solid var(--color-gold);
-  border-radius: 999px;
   padding: 13px 28px;
-  font-family: var(--font-body);
   font-size: 15px;
   font-weight: 600;
-  text-decoration: none;
   margin-top: 12px;
   transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 
+.btn-outline-gold:hover,
 .btn-ver-catalogo:hover {
   background: var(--color-gold);
   color: var(--color-button-text);
@@ -379,23 +372,9 @@
   align-items: center;
 }
 
-.distribuidor-kicker {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  display: block;
-  margin-bottom: 14px;
-}
-
 .distribuidor-title {
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: clamp(30px, 4.2vw, 46px);
-  color: #f4ecda;
   margin: 0 0 22px;
-  letter-spacing: -0.01em;
 }
 
 .distribuidor-text {
@@ -403,29 +382,6 @@
   line-height: 1.7;
   color: #c3b596;
   margin: 0 0 16px;
-}
-
-.btn-outline-gold {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  color: var(--color-gold-light);
-  border: 1.5px solid var(--color-gold);
-  border-radius: 999px;
-  padding: 13px 28px;
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  margin-top: 12px;
-  transition: background 0.2s, color 0.2s, transform 0.2s;
-}
-
-.btn-outline-gold:hover {
-  background: var(--color-gold);
-  color: var(--color-button-text);
-  transform: translateY(-2px);
 }
 
 .distribuidor-form-panel {
@@ -447,21 +403,8 @@
   text-align: center;
 }
 
-.recetas-kicker {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--color-gold);
-  display: block;
-  margin-bottom: 14px;
-}
-
 .recetas-title {
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: clamp(30px, 4.2vw, 48px);
-  color: #f4ecda;
   margin: 0 0 44px;
 }
 
