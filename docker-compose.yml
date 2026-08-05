@@ -1,0 +1,35 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: cafetal-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  api:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      container_name: cafetal-api
+      ports:
+        - "3000:3000"
+      env_file:
+        - .env
+      environment:
+      - MONGODB_URI=mongodb://mongo:27017/cafetal-sobre-piedra
+      depends_on:
+        - mongo
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cafetal-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - api    
+
+volumes:
+  mongo-data:            
