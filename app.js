@@ -7,6 +7,7 @@ const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const distributorRoutes = require('./routes/distributorRoutes');
+const { limitarGeneral } = require('./middleware/rateLimiter');
 
 const app = express();
 
@@ -19,6 +20,8 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
 
 app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
+
+app.use('/api', limitarGeneral);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);

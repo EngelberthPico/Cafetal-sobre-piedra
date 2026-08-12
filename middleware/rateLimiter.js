@@ -11,4 +11,15 @@ const limitarAuth = rateLimit({
   legacyHeaders: false,
 });
 
-module.exports = { limitarAuth };
+const limitarGeneral = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: {
+    exitoso: false,
+    mensaje: 'Demasiadas solicitudes. Intenta de nuevo en unos minutos.'
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+module.exports = { limitarAuth, limitarGeneral };
