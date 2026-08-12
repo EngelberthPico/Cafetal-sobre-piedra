@@ -9,7 +9,12 @@ const distributorRoutes = require('./routes/distributorRoutes');
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
+    .split(',')
+    .map((origen) => origen.trim())
+    .filter(Boolean);
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
