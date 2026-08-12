@@ -1,3 +1,4 @@
 node_modules
 .env
 mongo-dump/
+claude.md

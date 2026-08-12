@@ -4,6 +4,9 @@ services:
     container_name: cafetal-mongo
     ports:
       - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
     volumes:
       - mongo-data:/data/db
 
@@ -17,7 +20,7 @@ services:
       env_file:
         - .env
       environment:
-      - MONGODB_URI=mongodb://mongo:27017/cafetal-sobre-piedra
+      - MONGODB_URI=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongo:27017/cafetal-sobre-piedra?authSource=admin
       depends_on:
         - mongo
 
