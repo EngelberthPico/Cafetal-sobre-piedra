@@ -154,30 +154,39 @@ const crearPedido = async (req, res) => {
 
 const actualizarPedido = async (req, res) => {
     try {
-            const pedido = await Order.findByIdAndUpdate(
-                req.params.id, 
-                req.body, 
-                { new: true }
-            );
+        const camposPermitidos = ['estado', 'nombreCliente', 'telefono', 'direccionEnvio'];
+        const actualizaciones = {};
 
-            if (!pedido) {
-                return res.status(404).json({
-                    exitoso: false,
-                    mensaje: "Pedido no encontrado"
-                });
+        for (const campo of camposPermitidos) {
+            if (req.body[campo] !== undefined) {
+                actualizaciones[campo] = req.body[campo];
             }
+        }
 
-            res.status(200).json({
-                exitoso: true,
-                datos: pedido
-            });
-        }
-        catch (error) {
-            res.status(500).json({
+        const pedido = await Order.findByIdAndUpdate(
+            req.params.id,
+            actualizaciones,
+            { new: true, runValidators: true }
+        );
+
+        if (!pedido) {
+            return res.status(404).json({
                 exitoso: false,
-                mensaje: error.message
+                mensaje: "Pedido no encontrado"
             });
         }
+
+        res.status(200).json({
+            exitoso: true,
+            datos: pedido
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            exitoso: false,
+            mensaje: error.message
+        });
+    }
 };
 
 const eliminarPedido = async (req, res) => {
